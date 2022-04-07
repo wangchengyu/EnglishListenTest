@@ -70,7 +70,7 @@ def examine(chapter):
     test = {}
     
     if chapter == "all":
-        test = data[chapter]
+        test = data
     else:
         test[chapter] = data[chapter]
             
