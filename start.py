@@ -44,6 +44,7 @@ def say(msg, lang="zh-cn"):
     if not os.path.isfile(audio_file):
         getAudioFromApi(msg, lang, audio_file)
         
+    print("play file: \"{0}\"".format(audio_file))
     os.system("play -q \"{0}\" ".format(audio_file))
     
 def getDataFromYaml():
