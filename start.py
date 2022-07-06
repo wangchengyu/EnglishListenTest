@@ -8,12 +8,15 @@ from google.cloud import texttospeech
 
 # module_path = os.path.dirname(__file__)
 # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = module_path + "/*.json"
-client = texttospeech.TextToSpeechClient()
+client = "" # texttospeech.TextToSpeechClient()
 
 ZH = "zh-CN"
 EN = "en-GB"
 
 def getAudioFromApi(msg, lang="zh-CN", audio_file=""):
+    if client == "":
+        client = texttospeech.TextToSpeechClient()
+
     synthesis_input = texttospeech.SynthesisInput(text=msg)
     voice = texttospeech.VoiceSelectionParams(
         language_code=lang, 
@@ -100,9 +103,11 @@ def examine(chapter):
             say(c, ZH)
             time.sleep(1)
             say(w, EN)
-            time.sleep(1)
+            time.sleep(3)
 
-    time.sleep(1)
+            os.system("play -q \"{0}\" ".format("./aff80e3f644640fbbd4d1ce2cede4113.mp3"))
+
+    time.sleep(3)
     say("听力考试结束") #，不及格没有饭吃")
 
 if len(sys.argv) == 1:
